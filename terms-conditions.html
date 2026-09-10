@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GuestEzee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="rcp7TY3hSANkybrjMVPwyh8KRG1GZWUCcIFVLgVCwmg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/guestezee-newlogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/css/common.css">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "GuestEzee",
+    "url": "https://www.guestezee.com"
+  }
+  </script>
+  <style>
+    /* ===== Terms & Conditions Page Styles ===== */
+    .terms-container-ge {
+      margin: 40px auto;
+      padding: 0 5%;
+      background: #fff;
+      border-radius: 8px;
+    }
+
+    .terms-container-ge h1 {
+      font-size: 2rem;
+      color: #003366;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .terms-container-ge h2 {
+      font-size: 1.4rem;
+      color: #004080;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .terms-container-ge p { margin-bottom: 1rem; line-height: 1.6; color: #333; }
+
+    .terms-container-ge ul {
+      padding-left: 20px;
+      list-style: disc;
+    }
+
+    .terms-container-ge ul li { margin-bottom: 0.5rem; line-height: 1.6; color: #333; }
+
+    /* Inner pages (About/Demo/Terms/Privacy) use a full-width static header, not the home page's floating pill */
+    @media (min-width: 640px) {
+      body.inner-page .header-container {
+        width: 100%;
+        margin-left: 0;
+        border-radius: 0;
+        transform: none;
+        top: 0;
+        height: 118px;
+      }
+    }
+  </style>
+</head>
+<body class="inner-page">
+
+<!-- ===== ENQUIRY MODAL ===== -->
+<div class="custom-modal" id="enquiryModal" style="display:none;" onclick="closeModalOutside(event)">
+  <div class="custom-modal-content" style="border: none !important; position: relative;">
+    <div onclick="event.stopPropagation()">
+      <section class="register-section">
+        <div class="register-container">
+          <div class="header">
+            <p>WANT TO KNOW ABOUT US?</p>
+            <h1>Get in touch</h1>
+          </div>
+          <button type="button" onclick="closeEnquiryModal()" class="close" aria-label="Close">
+            <span style="font-size: 2.5rem !important;font-weight: 100;" aria-hidden="true">&times;</span>
+          </button>
+          <div id="enquiry-alert" class="alert success" style="display:none;">
+            <span class="alert-message"></span>
+          </div>
+          <form id="enquiryForm" class="gift-form" novalidate>
+            <div class="form-group">
+              <div class="left-col">
+                <label for="eq-fullname">FULL NAME*</label>
+                <input type="text" id="eq-fullname" name="fullname" required>
+                <div class="invalid-feedback">Full name is required.</div>
+              </div>
+              <div class="right-col">
+                <label for="eq-address1">ADDRESS LINE 1*</label>
+                <input type="text" id="eq-address1" name="address1" required>
+                <div class="invalid-feedback">Address is required.</div>
+              </div>
+              <div class="left-col">
+                <label for="eq-email">EMAIL ADDRESS*</label>
+                <input type="email" id="eq-email" name="email" required>
+                <div class="invalid-feedback">Email is required.</div>
+              </div>
+              <div class="right-col">
+                <label for="eq-address2">ADDRESS LINE 2*</label>
+                <input type="text" id="eq-address2" name="address2" required>
+                <div class="invalid-feedback">Address is required.</div>
+              </div>
+              <div class="left-col">
+                <label for="eq-mobile">MOBILE NUMBER*</label>
+                <input type="number" id="eq-mobile" name="mobile" required>
+                <div class="invalid-feedback">Mobile number is required.</div>
+              </div>
+              <div class="right-col">
+                <label for="eq-city">CITY*</label>
+                <input type="text" id="eq-city" name="city" required>
+                <div class="invalid-feedback">City is required.</div>
+              </div>
+              <div class="left-col">
+                <label for="eq-organization">ORGANIZATION NAME*</label>
+                <input type="text" id="eq-organization" name="organization" required>
+                <div class="invalid-feedback">Organization name is required.</div>
+              </div>
+              <div class="right-col">
+                <label for="eq-state">STATE*</label>
+                <select id="eq-state" name="state" required>
+                  <option value="" disabled selected>Select State</option>
+                  <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
+                  <option>Bihar</option><option>Chhattisgarh</option><option>Goa</option><option>Gujarat</option>
+                  <option>Haryana</option><option>Himachal Pradesh</option><option>Jharkhand</option>
+                  <option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option>
+                  <option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option>
+                  <option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Punjab</option>
+                  <option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option>
+                  <option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option>
+                  <option>Uttarakhand</option><option>West Bengal</option>
+                  <option>Andaman and Nicobar Islands</option><option>Chandigarh</option>
+                  <option>Dadra and Nagar Haveli and Daman and Diu</option><option>Delhi</option>
+                  <option>Jammu and Kashmir</option><option>Ladakh</option><option>Lakshadweep</option>
+                  <option>Puducherry</option>
+                </select>
+                <div class="invalid-feedback">State is required.</div>
+              </div>
+              <div class="number-input left-col">
+                <label for="eq-rooms" style="text-wrap: nowrap" class="room-text">NUMBER OF ROOMS/KEYS*</label>
+                <div class="btn-group">
+                  <button type="button" class="increse-btn" onclick="changeRooms(-1)">-</button>
+                  <input id="eq-rooms" type="number" value="1" min="1" name="rooms" required />
+                  <button type="button" class="increse-btn" onclick="changeRooms(1)">+</button>
+                </div>
+              </div>
+              <div style="display: flex;" class="right-col">
+                <div>
+                  <label for="eq-zipcode">PIN CODE*</label>
+                  <input type="text" id="eq-zipcode" name="zipcode" class="zipcode" required>
+                  <div class="invalid-feedback">Pincode is required.</div>
+                </div>
+                <div>
+                  <label for="eq-country">COUNTRY*</label>
+                  <select id="eq-country" name="country" required>
+                    <option value="" disabled selected>Select Country</option>
+                    <option>India</option>
+                  </select>
+                  <div class="invalid-feedback">Country is required.</div>
+                </div>
+              </div>
+              <div class="full-width">
+                <label for="eq-description">DESCRIPTION OF YOUR BUSINESS*</label>
+                <textarea id="eq-description" name="description" rows="4" required></textarea>
+                <div class="invalid-feedback">Description is required.</div>
+              </div>
+            </div>
+            <div class="submit-btn">
+              <button type="button" class="btn btn-primary" onclick="submitEnquiryForm()" style="background-color:#800000;color:#fff;padding:10px 75px;border:none;border-radius:5px;cursor:pointer;font-size:1em;">SUBMIT <i class="fa fa-arrow-right"></i></button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SUCCESS ALERT ===== -->
+<div id="success-alert-global" class="alert success" style="display:none;">
+  <span class="alert-message" id="global-alert-msg"></span>
+</div>
+
+<!-- ===== DESKTOP HEADER ===== -->
+<div class="desktop-only">
+  <div class="header-container">
+    <div class="logo-section">
+      <img alt="GuestEzee Logo" src="assets/images/page_1 1.png" class="logo" />
+      <p class="Revolutionizing-text"> Revolutionizing Hotel Guest Experience</p>
+    </div>
+    <div class="header-buttons">
+      <div><a href="index.html"><button class="btn-about">Home</button></a></div>
+      <div><a href="about-us.html"><button class="btn-about">About</button></a></div>
+      <div><a href="videos.html"><button class="btn-about">Demo</button></a></div>
+      <div><button class="btn-contact-overlay" onclick="downloadBrochure()">Download Brochure</button></div>
+      <div><button class="btn-login" onclick="toLogin()" style="background-color:#800000;color:white;padding:10px 20px;border:none;cursor:pointer;font-size:16px;border-radius:5px;">Login</button></div>
+      <div><button class="btn-contact" onclick="openEnquiryModal()" style="background-color:#ffcc00;color:black;padding:10px 20px;border:none;cursor:pointer;font-size:16px;border-radius:5px;">Enquiry</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MOBILE HEADER ===== -->
+<div class="mobile-only">
+  <div class="mobile-header" style="border-bottom: 1px solid #8b1538;">
+    <button class="hamburger" style="margin-left: 10px;" onclick="toggleSidebar()">&#9776;</button>
+    <p class="header-text" style="font-size: 10px;font-weight: 500;"> Revolutionizing Hotel Guest Experience</p>
+    <img alt="GuestEzee Logo" style="margin-right: 10px;" src="assets/images/page_1 1.png" class="mobile-logo" />
+  </div>
+
+  <div class="sidebar" id="mobileSidebar" style="background: linear-gradient(90deg, rgb(255, 253, 240) 0%, rgb(255, 255, 255) 100%);">
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="about-us.html" onclick="toggleSidebar()">About</a>
+    <a href="videos.html" onclick="toggleSidebar()">Demo</a>
+    <a href="javascript:void(0)" onclick="downloadBrochure(); toggleSidebar();">Download Brochure</a>
+    <button class="sidebar-btn" onclick="toLogin(); toggleSidebar()">Login</button>
+    <button class="sidebar-btn" onclick="openEnquiryModal(); toggleSidebar()">Enquiry</button>
+  </div>
+
+  <div class="overlay" id="sidebarOverlay" style="display:none;" onclick="toggleSidebar()"></div>
+</div>
+
+<!-- ===== TERMS AND CONDITIONS CONTENT ===== -->
+<main class="terms-container-ge">
+  <h1 class="desktop-only" style="margin-top: 13%;">Terms and Conditions</h1>
+  <h1 class="mobile-only">Terms and Conditions</h1>
+
+  <section>
+    <h2>Terms and Conditions</h2>
+    <p>The content on the website www.guestezee.com, which includes text, images, audio clips, video clips, downloads, software, products for purchase, and other materials, are provided by Guestvento Technology Private Limited (technology division) for application and online transaction purposes only. By accessing the www.guestezee.com site, downloading, or purchasing any Content, you agree to be bound by the Terms and Conditions set out below ("Terms and Conditions"). If you do not agree to these Terms and Conditions, do not access the www.guestezee.com site or download any Content.</p>
+  </section>
+
+  <section>
+    <h2>General Disclaimers</h2>
+    <p>Guestvento Technology private limited technology division publishes Content on the www.guestezee.com site to be accurate and reliable, however, since the Content has been compiled from a variety of sources, it is provided to the readers "as is" and "as available". Guestvento Technology private limited Technology division ASSUMES NO RESPONSIBILITY TO ANYONE OR ANY THIRD PARTY FOR ANY ERRORS OR OMISSIONS OF ANY KIND IN THE CONTENT, AND DISCLAIMS ALL WARRANTIES AND/OR CONDITIONS, EXPRESS OR IMPLIED, AS TO THE CONTENT AND TO ANY MATTER RELATING TO THE SITE, INCLUDING BUT NOT LIMITED TO, IMPLIED WARRANTIES AND/OR CONDITIONS OF NON INFRINGEMENT, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</p>
+    <p>Links available on the www.guestezee.com site will allow you to link to websites not maintained or controlled by Guestvento Technology private limited technology division. These links are provided for your convenience – neither party is responsible for the content or online transactions of any linked site. Guestvento Technology private limited technology division uses reasonable efforts to ensure the accuracy of its Content on the www.guestezee.com site, but cannot and does not warrant the accuracy, completeness, non-infringement, merchantability or fitness for a particular purpose of any information or online transactions available through these links, and makes no representation or endorsement whatsoever about any other website which you may access through the www.guestezee.com site. It is your responsibility to ensure that any website you choose to use is free of potentially destructive items such as viruses.</p>
+  </section>
+
+  <section>
+    <h2>Use of the Site</h2>
+    <p>You may not post, upload, publish, reproduce, transmit, or otherwise distribute information or other material on this www.guestezee.com</p>
+    <ul>
+      <li>a) Constituting or encouraging conduct that would constitute a criminal offence or give rise to civil liability;</li>
+      <li>b) Which is protected by copyright, or other intellectual property right, or derivative works hereof, without obtaining permission of the copyright holder; or</li>
+      <li>c) Otherwise, use this www.guestezee.com site in a manner which is contrary to law or electronic etiquette, or which would adversely impact use of the www.guestezee.com or the Internet by other users, including the posting or transmitting of information or software containing viruses or other disruptive components.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Copyright</h2>
+    <p>All Content published on or otherwise accessible through this www.guestezee.com site is protected by copyright. The Content, and the copyright in the Content, are owned or controlled by Guestvento Technology private limited technology division or its content suppliers. You may only use or reproduce the information in the Content for your own personal, non-commercial or educational use. The Content may not be otherwise used, reproduced, broadcast, published, or retransmitted without the prior written permission of the copyright holder. You must abide by all copyright notices, information and restrictions contained in any Content on or accessed through the www.guestezee.com site, and maintain such notices in the Content.</p>
+    <p>Postings related to Demo, About, Brochure and Hotels enrolling and their hotel details etc which are posted by the registered members, are the sole property of Guestvento Technology and reserves its right to repost in any social media/other sites.</p>
+  </section>
+
+  <section>
+    <h2>Trademarks</h2>
+    <p>www.guestezee.com™ is a registered trademark of Guestvento Technology private limited, Technology division in India. All other products, services and company names mentioned in the www.guestezee.com site may be trademarks of their respective owners. You may not use any trademark displayed on the www.guestezee.com site without the written permission of Guestvento Technology's Technology division or the relevant owner of the trademark.</p>
+  </section>
+
+  <section>
+    <h2>Payments</h2>
+    <p>Guestvento Technology's technology division is authorised to collect payments from the Members (Hotels and Customers) / Advertisers online thru approved 3rd party payment gateway.</p>
+  </section>
+
+  <section>
+    <h2>Privacy and Confidential Information</h2>
+    <p>Guestvento Technology's Technology division Privacy and Security Policy is a binding part of these Terms and Conditions. The Privacy and Security Policy is available at this website.</p>
+  </section>
+
+  <section>
+    <h2>Indemnity</h2>
+    <p>You agree to defend, indemnify and hold Guestvento Technology's technology division and its related companies harmless from any and all liabilities, costs and expenses, including reasonable attorney's fees, related to any violation of these Terms and Conditions by you or users of your account, or in connection with the use of www.guestezee.com site or the placement or transmission of any information or other materials on this site by you or users of your account.</p>
+  </section>
+
+  <section>
+    <h2>Changes</h2>
+    <p>Guestvento Technology's media division reserves the right to change or remove any Content from the website www.guestezee.com, in whole or in part, at its sole discretion, at any time, without notice. Guestvento Technology's technology division reserves the right to change or modify these Terms and Conditions and its Privacy and Security Policy at any time, without notice, and such changes will become effective immediately from the date in which they are posted on the site.</p>
+  </section>
+
+  <section>
+    <h2>Miscellaneous</h2>
+    <p>Terms and Conditions, including Guestvento Technology's technology division Privacy and Security Policy and other documents referenced herein, constitute the entire agreement between Guestvento Technology's technology division and you with respect to your use of the site. Guestvento Technology's technology division failure to insist upon or enforce strict performance of any provision of the Agreement shall not be construed as a waiver of any provision or right. If any of the Terms and Conditions is determined to be void, invalid or otherwise unenforceable by a court of competent jurisdiction, such determination shall not affect the remaining provisions hereof. This Agreement shall be governed by and construed in accordance with the laws of India, with the court of Chennai as jurisdiction. The parties have required that these Terms and Conditions and all related documents be drawn up in English.</p>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-container">
+  <div class="footer-logo mobile-only">
+    <img src="assets/images/page_1 1.png" alt="Guestezee's Logo" />
+  </div>
+  <div class="footer-sections">
+    <div class="footer-logo desktop-only">
+      <img src="assets/images/page_1 1.png" alt="Guestezee's Logo" />
+    </div>
+    <div class="footer-column">
+      <h6 style="color: black;">CUSTOMER CARE</h6>
+      <ul>
+        <li><a href="about-us.html" style="color: black !important;">About</a></li>
+        <li><a onclick="openEnquiryModal()" style="color: black !important; cursor:pointer;">Contact Us</a></li>
+        <li><a href="terms-conditions.html" style="color: black !important;">Terms and Conditions</a></li>
+        <li><a href="privacy-policy.html" style="color: black !important;">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h6 style="color: black;">GET IN TOUCH</h6>
+      <p style="color: black;">Call : +91 90030 44445</p>
+      <p style="color: black;">Email : support@guestezee.com</p>
+    </div>
+    <div class="footer-column social-media">
+      <h6 style="color: black;">SOCIAL MEDIA</h6>
+      <div class="icons">
+        <a href="https://www.linkedin.com/company/guestezee/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/new_social/linkedin (1).png" alt="linkedin" />
+        </a>
+        <a href="https://x.com/guestezee?s=21" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/new_social/twitter (1).png" alt="Twitter" />
+        </a>
+        <a href="https://www.instagram.com/guestezee/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/new_social/social.png" alt="instagram" />
+        </a>
+        <a href="https://youtube.com/@guestezee?si=RiFpEavhaRThUb37" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/new_social/youtube.png" alt="youtube" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="guest-ezee-footer">
+  Copyright Division of GuestVento Technology Pvt Ltd.
+</div>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="top-button" onclick="topFunction()" id="myBtn" title="Go to top" style="display:none;"><i class="fa fa-angle-up"></i></button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script src="assets/js/common.js"></script>
+</body>
+</html>

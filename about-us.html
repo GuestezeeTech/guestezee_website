@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GuestEzee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="rcp7TY3hSANkybrjMVPwyh8KRG1GZWUCcIFVLgVCwmg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/guestezee-newlogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/css/common.css">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "GuestEzee",
+    "url": "https://www.guestezee.com"
+  }
+  </script>
+  <style>
+    /* ===== GuestEzee About Us Page Styles ===== */
+    :root {
+      --guestezee-primary: #1a365d;
+      --guestezee-secondary: #2d3748;
+      --guestezee-accent: #3182ce;
+      --guestezee-success: #38a169;
+      --guestezee-warning: #d69e2e;
+      --guestezee-text-primary: #2d3748;
+      --guestezee-text-secondary: #4a5568;
+      --guestezee-text-light: #718096;
+      --guestezee-bg-light: #f7fafc;
+      --guestezee-bg-white: #ffffff;
+      --guestezee-border: #e2e8f0;
+      --guestezee-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --guestezee-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --guestezee-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --guestezee-gradient-alt: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .guestezee-about-page {
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.6;
+      color: var(--guestezee-text-primary);
+    }
+
+    .guestezee-scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: var(--guestezee-gradient);
+      z-index: 1000;
+      transition: width 0.1s ease-out;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Animation Classes */
+    .guestezee-scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .guestezee-scroll-animate.guestezee-animate-active { opacity: 1; transform: translateY(0); }
+
+    .guestezee-scroll-animate.guestezee-fade-in-up { transform: translateY(50px); }
+    .guestezee-scroll-animate.guestezee-fade-in-up.guestezee-animate-active { transform: translateY(0); }
+
+    .guestezee-scroll-animate.guestezee-fade-in-left { transform: translateX(-50px); }
+    .guestezee-scroll-animate.guestezee-fade-in-left.guestezee-animate-active { transform: translateX(0); }
+
+    .guestezee-scroll-animate.guestezee-fade-in-right { transform: translateX(50px); }
+    .guestezee-scroll-animate.guestezee-fade-in-right.guestezee-animate-active { transform: translateX(0); }
+
+    .guestezee-scroll-animate.guestezee-slide-in-up { transform: translateY(60px) scale(0.95); }
+    .guestezee-scroll-animate.guestezee-slide-in-up.guestezee-animate-active { transform: translateY(0) scale(1); }
+
+    .guestezee-scroll-animate.guestezee-scale-in { transform: scale(0.8); }
+    .guestezee-scroll-animate.guestezee-scale-in.guestezee-animate-active { transform: scale(1); }
+
+    /* Section Container */
+    .guestezee-section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    @media (max-width: 768px) {
+      .guestezee-section-container { padding: 0 16px; }
+    }
+
+    /* Section Title Base */
+    .guestezee-section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--guestezee-primary);
+      position: relative;
+    }
+    .guestezee-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--guestezee-gradient);
+      border-radius: 2px;
+    }
+    @media (max-width: 768px) {
+      .guestezee-section-title { font-size: 2rem; margin-bottom: 2rem; }
+    }
+
+    /* Hero Section */
+    .guestezee-hero-section {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--guestezee-gradient);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .guestezee-hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.1;
+    }
+
+    .guestezee-hero-container { z-index: 1; position: relative; }
+    .guestezee-hero-container h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.2; }
+    @media (max-width: 768px) { .guestezee-hero-container h1 { font-size: 2.5rem; } }
+    @media (max-width: 480px) { .guestezee-hero-container h1 { font-size: 2rem; } }
+
+    .guestezee-hero-subtitle { font-size: 1.5rem; margin-bottom: 2rem; font-weight: 300; opacity: 0.9; }
+    @media (max-width: 768px) { .guestezee-hero-subtitle { font-size: 1.25rem; } }
+
+    .guestezee-hero-contact { font-size: 1.1rem; margin-top: 2rem; }
+    .guestezee-hero-contact .guestezee-email-link,
+    .guestezee-cta-contact .guestezee-email-link {
+      color: #ffd700 !important;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    .guestezee-hero-contact .guestezee-email-link:hover,
+    .guestezee-cta-contact .guestezee-email-link:hover { border-color: #ffd700; }
+
+    /* Vision Section */
+    .guestezee-vision-section { padding: 80px 0; background: var(--guestezee-bg-light); }
+    .guestezee-vision-content { max-width: 800px; margin: 0 auto; text-align: center; }
+    .guestezee-vision-text { font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem; color: var(--guestezee-text-secondary); }
+    .guestezee-vision-text strong { color: var(--guestezee-primary); font-weight: 600; }
+    .guestezee-vision-tagline { font-size: 1.4rem; font-weight: 600; color: var(--guestezee-accent); font-style: italic; }
+
+    /* Purpose Section */
+    .guestezee-purpose-section { padding: 80px 0; background: var(--guestezee-bg-white); }
+    .guestezee-purpose-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .guestezee-purpose-card {
+      background: var(--guestezee-bg-white);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--guestezee-shadow-lg);
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid var(--guestezee-border);
+    }
+    .guestezee-purpose-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+    .guestezee-card-icon { font-size: 3rem; margin-bottom: 1.5rem; display: block; }
+    .guestezee-card-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; color: var(--guestezee-primary); }
+    .guestezee-card-description { font-size: 1rem; line-height: 1.6; color: var(--guestezee-text-secondary); }
+    .guestezee-card-description strong { color: var(--guestezee-primary); font-weight: 600; }
+
+    /* Services Section */
+    .guestezee-services-section { padding: 80px 0; background: var(--guestezee-bg-light); }
+    .guestezee-services-intro {
+      max-width: 800px; margin: 0 auto; text-align: center;
+      font-size: 1.2rem; line-height: 1.8; color: var(--guestezee-text-secondary);
+    }
+    .guestezee-services-intro strong { color: var(--guestezee-primary); font-weight: 600; }
+
+    /* Guest Benefits Section */
+    .guestezee-guest-benefits-section { padding: 80px 0; background: var(--guestezee-bg-white); }
+    .guestezee-benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .guestezee-benefit-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--guestezee-shadow);
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--guestezee-accent);
+    }
+    .guestezee-benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--guestezee-shadow-lg);
+      border-left-color: var(--guestezee-success);
+    }
+    .guestezee-benefit-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .guestezee-benefit-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: var(--guestezee-primary); }
+    .guestezee-benefit-description { font-size: 1rem; line-height: 1.6; color: var(--guestezee-text-secondary); }
+
+    .guestezee-benefits-conclusion {
+      max-width: 600px;
+      margin: 3rem auto 0;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--guestezee-primary);
+    }
+    .guestezee-benefits-conclusion strong {
+      background: var(--guestezee-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Ecosystem Section */
+    .guestezee-ecosystem-section { padding: 2% 15%; background-color: white; }
+    .guestezee-ecosystem-image { text-align: center; margin-top: 2rem; }
+    .guestezee-ecosystem-image img { max-width: 100%; height: auto; border-radius: 16px; }
+
+    /* Features Carousel Section */
+    .guestezee-features-section { padding: 80px 0; background: var(--guestezee-bg-white); }
+    .guestezee-features-carousel { position: relative; margin-top: 3rem; }
+    .guestezee-carousel-controls { display: flex; align-items: center; gap: 1rem; }
+
+    .guestezee-carousel-btn {
+      background: var(--guestezee-accent);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--guestezee-shadow);
+      flex-shrink: 0;
+    }
+    .guestezee-carousel-btn:hover:not(.disabled) { background: var(--guestezee-primary); transform: scale(1.1); }
+    .guestezee-carousel-btn.disabled { background: var(--guestezee-border); cursor: not-allowed; opacity: 0.5; }
+    .guestezee-carousel-btn i { font-size: 1.2rem; }
+    @media (max-width: 768px) { .guestezee-carousel-btn { width: 45px; height: 45px; } }
+
+    .guestezee-carousel-wrapper { flex: 1; overflow: hidden; border-radius: 12px; }
+    .guestezee-carousel-track { display: flex; transition: transform 0.5s ease-in-out; gap: 1.5rem; }
+
+    .guestezee-feature-card {
+      flex: 0 0 calc(33.333% - 1rem);
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--guestezee-shadow);
+      transition: all 0.3s ease;
+    }
+    .guestezee-feature-card:hover { transform: translateY(-8px); box-shadow: var(--guestezee-shadow-lg); }
+    @media (max-width: 1024px) { .guestezee-feature-card { flex: 0 0 calc(50% - 0.75rem); } }
+    @media (max-width: 768px) { .guestezee-feature-card { flex: 0 0 100%; } }
+
+    .guestezee-feature-content { padding: 2rem; text-align: center; }
+    .guestezee-feature-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .guestezee-feature-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; color: var(--guestezee-primary); }
+    .guestezee-feature-description { font-size: 1rem; line-height: 1.6; color: var(--guestezee-text-secondary); }
+
+    /* Benefits Section (Win-Win) */
+    .guestezee-benefits-section { padding: 80px 0; background: var(--guestezee-bg-light); }
+    .guestezee-benefits-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--guestezee-primary);
+      position: relative;
+    }
+    .guestezee-benefits-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--guestezee-gradient);
+      border-radius: 2px;
+    }
+    @media (max-width: 768px) { .guestezee-benefits-title { font-size: 2rem; } }
+
+    .guestezee-benefits-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+    @media (max-width: 768px) { .guestezee-benefits-columns { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .guestezee-benefits-column {
+      background: var(--guestezee-bg-white);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: var(--guestezee-shadow);
+      border-top: 4px solid var(--guestezee-accent);
+    }
+    .guestezee-benefits-heading {
+      font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem;
+      color: var(--guestezee-primary); display: flex; align-items: center; gap: 0.5rem;
+    }
+    .guestezee-check-icon { font-size: 1.2rem; color: var(--guestezee-success); }
+    .guestezee-benefits-list { list-style: none; padding: 0; margin: 0; }
+    .guestezee-benefit-item {
+      padding: 0.75rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.5s ease;
+      border-bottom: 1px solid var(--guestezee-border);
+    }
+    .guestezee-benefit-item:last-child { border-bottom: none; }
+    .guestezee-benefit-item.guestezee-benefit-animated { opacity: 1; transform: translateX(0); }
+    .guestezee-benefit-item .guestezee-bullet { color: var(--guestezee-accent); font-weight: bold; font-size: 1.2rem; flex-shrink: 0; }
+
+    /* Call to Action Section */
+    .guestezee-cta-section { padding: 80px 0; background: var(--guestezee-gradient-alt); color: white; text-align: center; }
+    .guestezee-cta-content { max-width: 800px; margin: 0 auto; }
+    .guestezee-cta-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; }
+    @media (max-width: 768px) { .guestezee-cta-title { font-size: 2rem; } }
+    .guestezee-cta-description { font-size: 1.2rem; line-height: 1.7; margin-bottom: 2rem; opacity: 0.95; }
+    .guestezee-cta-contact { font-size: 1.1rem; }
+
+    /* Responsive Design Adjustments */
+    @media (max-width: 1024px) {
+      .guestezee-section-container { padding: 0 24px; }
+      .guestezee-section-title { font-size: 2.2rem; }
+      .guestezee-purpose-cards { grid-template-columns: 1fr; max-width: 600px; margin: 3rem auto 0; }
+      .guestezee-benefits-grid { grid-template-columns: 1fr; max-width: 600px; margin: 3rem auto 0; }
+    }
+
+    @media (max-width: 768px) {
+      .guestezee-hero-section { min-height: 60vh; padding: 40px 0; }
+      .guestezee-vision-section, .guestezee-purpose-section, .guestezee-services-section,
+      .guestezee-guest-benefits-section, .guestezee-ecosystem-section, .guestezee-features-section,
+      .guestezee-benefits-section, .guestezee-cta-section { padding: 60px 0; }
+      .guestezee-benefits-columns { margin-top: 2rem; }
+      .guestezee-benefits-column { padding: 2rem; }
+      .guestezee-carousel-controls .guestezee-carousel-btn { order: 2; }
+      .guestezee-carousel-controls .guestezee-carousel-btn.guestezee-carousel-prev { order: 1; }
+      .guestezee-carousel-controls .guestezee-carousel-btn.guestezee-carousel-next { order: 3; }
+      .guestezee-carousel-controls .guestezee-carousel-wrapper { order: 2; width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .guestezee-section-container { padding: 0 16px; }
+      .guestezee-section-title { font-size: 1.8rem; margin-bottom: 2rem; }
+      .guestezee-purpose-card, .guestezee-benefit-card, .guestezee-benefits-column { padding: 1.5rem; }
+    }
+
+    /* Inner pages (About/Demo/Terms/Privacy) use a full-width static header, not the home page's floating pill */
+    @media (min-width: 640px) {
+      body.inner-page .header-container {
+        width: 100%;
+        margin-left: 0;
+        border-radius: 0;
+        transform: none;
+        top: 0;
+        height: 118px;
+      }
+    }
+  </style>
+</head>
+<body class="inner-page">
+
+<!-- ===== ENQUIRY MODAL ===== -->
+<div class="custom-modal" id="enquiryModal" style="display:none;" onclick="closeModalOutside(event)">
+  <div class="custom-modal-content" style="border: none !important; position: relative;">
+    <div onclick="event.stopPropagation()">
+      <section class="register-section">
+        <div class="register-container">
+          <div class="header">
+            <p>WANT TO KNOW ABOUT US?</p>
+            <h1>Get in touch</h1>
+          </div>
+          <button type="button" onclick="closeEnquiryModal()" class="close" aria-label="Close">
+            <span style="font-size: 2.5rem !important;font-weight: 100;" aria-hidden="true">&times;</span>
+          </button>
+          <div id="enquiry-alert" class="alert success" style="display:none;">
+            <span class="alert-message"></span>
+          </div>
+          <form id="enquiryForm" class="gift-form" novalidate>
+            <div class="form-group">
+              <div class="left-col">
+                <label for="eq-fullname">FULL NAME*</label>
+                <input type="text" id="eq-fullname" name="fullname" required>
+                <div class="invalid-feedback">Full name is required.</div>
+              </div>
+              <div class="right-col">
+                <label for="eq-address1">ADDRESS LINE 1*</label>
+                <input type="text" id="eq-address1" name="address1" required>
+                <div class="invalid-feedback">Address is required.</div>
+              </div>
+              <div class="left-col">
+                <label for="eq-email">EMAIL ADDRESS*</label>
+                <input type="email" id="eq-email" name="email" required>
+                <div class="invalid-feedback">Email is required.</div>
+              </div>
+              <div class="right-col">
+                <label for="eq-address2">ADDRESS LINE 2*</label>
+                <input type="text" id="eq-address2" name="address2" required>
+                <div class="invalid-feedback">Address is required.</div>
+              </div>
+              <div class="left-col">
+                <label for="eq-mobile">MOBILE NUMBER*</label>
+                <input type="number" id="eq-mobile" name="mobile" required>
+                <div class="invalid-feedback">Mobile number is required.</div>
+              </div>
+              <div class="right-col">
+                <label for="eq-city">CITY*</label>
+                <input type="text" id="eq-city" name="city" required>
+                <div class="invalid-feedback">City is required.</div>
+              </div>
+              <div class="left-col">
+                <label for="eq-organization">ORGANIZATION NAME*</label>
+                <input type="text" id="eq-organization" name="organization" required>
+                <div class="invalid-feedback">Organization name is required.</div>
+              </div>
+              <div class="right-col">
+                <label for="eq-state">STATE*</label>
+                <select id="eq-state" name="state" required>
+                  <option value="" disabled selected>Select State</option>
+                  <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
+                  <option>Bihar</option><option>Chhattisgarh</option><option>Goa</option><option>Gujarat</option>
+                  <option>Haryana</option><option>Himachal Pradesh</option><option>Jharkhand</option>
+                  <option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option>
+                  <option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option>
+                  <option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Punjab</option>
+                  <option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option>
+                  <option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option>
+                  <option>Uttarakhand</option><option>West Bengal</option>
+                  <option>Andaman and Nicobar Islands</option><option>Chandigarh</option>
+                  <option>Dadra and Nagar Haveli and Daman and Diu</option><option>Delhi</option>
+                  <option>Jammu and Kashmir</option><option>Ladakh</option><option>Lakshadweep</option>
+                  <option>Puducherry</option>
+                </select>
+                <div class="invalid-feedback">State is required.</div>
+              </div>
+              <div class="number-input left-col">
+                <label for="eq-rooms" style="text-wrap: nowrap" class="room-text">NUMBER OF ROOMS/KEYS*</label>
+                <div class="btn-group">
+                  <button type="button" class="increse-btn" onclick="changeRooms(-1)">-</button>
+                  <input id="eq-rooms" type="number" value="1" min="1" name="rooms" required />
+                  <button type="button" class="increse-btn" onclick="changeRooms(1)">+</button>
+                </div>
+              </div>
+              <div style="display: flex;" class="right-col">
+                <div>
+                  <label for="eq-zipcode">PIN CODE*</label>
+                  <input type="text" id="eq-zipcode" name="zipcode" class="zipcode" required>
+                  <div class="invalid-feedback">Pincode is required.</div>
+                </div>
+                <div>
+                  <label for="eq-country">COUNTRY*</label>
+                  <select id="eq-country" name="country" required>
+                    <option value="" disabled selected>Select Country</option>
+                    <option>India</option>
+                  </select>
+                  <div class="invalid-feedback">Country is required.</div>
+                </div>
+              </div>
+              <div class="full-width">
+                <label for="eq-description">DESCRIPTION OF YOUR BUSINESS*</label>
+                <textarea id="eq-description" name="description" rows="4" required></textarea>
+                <div class="invalid-feedback">Description is required.</div>
+              </div>
+            </div>
+            <div class="submit-btn">
+              <button type="button" class="btn btn-primary" onclick="submitEnquiryForm()" style="background-color:#800000;color:#fff;padding:10px 75px;border:none;border-radius:5px;cursor:pointer;font-size:1em;">SUBMIT <i class="fa fa-arrow-right"></i></button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SUCCESS ALERT ===== -->
+<div id="success-alert-global" class="alert success" style="display:none;">
+  <span class="alert-message" id="global-alert-msg"></span>
+</div>
+
+<!-- ===== DESKTOP HEADER ===== -->
+<div class="desktop-only">
+  <div class="header-container">
+    <div class="logo-section">
+      <img alt="GuestEzee Logo" src="assets/images/page_1 1.png" class="logo" />
+      <p class="Revolutionizing-text"> Revolutionizing Hotel Guest Experience</p>
+    </div>
+    <div class="header-buttons">
+      <div><a href="index.html"><button class="btn-about">Home</button></a></div>
+      <div><a href="about-us.html"><button class="btn-about">About</button></a></div>
+      <div><a href="videos.html"><button class="btn-about">Demo</button></a></div>
+      <div><button class="btn-contact-overlay" onclick="downloadBrochure()">Download Brochure</button></div>
+      <div><button class="btn-login" onclick="toLogin()" style="background-color:#800000;color:white;padding:10px 20px;border:none;cursor:pointer;font-size:16px;border-radius:5px;">Login</button></div>
+      <div><button class="btn-contact" onclick="openEnquiryModal()" style="background-color:#ffcc00;color:black;padding:10px 20px;border:none;cursor:pointer;font-size:16px;border-radius:5px;">Enquiry</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MOBILE HEADER ===== -->
+<div class="mobile-only">
+  <div class="mobile-header" style="border-bottom: 1px solid #8b1538;">
+    <button class="hamburger" style="margin-left: 10px;" onclick="toggleSidebar()">&#9776;</button>
+    <p class="header-text" style="font-size: 10px;font-weight: 500;"> Revolutionizing Hotel Guest Experience</p>
+    <img alt="GuestEzee Logo" style="margin-right: 10px;" src="assets/images/page_1 1.png" class="mobile-logo" />
+  </div>
+
+  <div class="sidebar" id="mobileSidebar" style="background: linear-gradient(90deg, rgb(255, 253, 240) 0%, rgb(255, 255, 255) 100%);">
+    <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="about-us.html" onclick="toggleSidebar()">About</a>
+    <a href="videos.html" onclick="toggleSidebar()">Demo</a>
+    <a href="javascript:void(0)" onclick="downloadBrochure(); toggleSidebar();">Download Brochure</a>
+    <button class="sidebar-btn" onclick="toLogin(); toggleSidebar()">Login</button>
+    <button class="sidebar-btn" onclick="openEnquiryModal(); toggleSidebar()">Enquiry</button>
+  </div>
+
+  <div class="overlay" id="sidebarOverlay" style="display:none;" onclick="toggleSidebar()"></div>
+</div>
+
+<!-- ===== ABOUT US CONTENT ===== -->
+<div class="guestezee-about-page">
+  <div class="guestezee-scroll-progress"></div>
+
+  <!-- Hero Section -->
+  <div class="desktop-only">
+    <section class="guestezee-hero-section" style="margin-top: 9%;">
+      <div class="guestezee-hero-container">
+        <h1 class="guestezee-scroll-animate guestezee-fade-in-up" data-delay="0">
+          GuestEzee &ndash; The World's First Guest Management System
+        </h1>
+        <p class="guestezee-hero-subtitle guestezee-scroll-animate guestezee-fade-in-up" data-delay="200">
+          Seamless. Smart. Sustainable. A Win-Win for Hotels &amp; Guests.
+        </p>
+        <p class="guestezee-hero-contact guestezee-scroll-animate guestezee-fade-in-up" data-delay="400">
+          Want to know more about GuestEzee? Send your queries to
+          <a href="mailto:support@guestezee.com" class="guestezee-email-link">support@guestezee.com</a>
+        </p>
+      </div>
+    </section>
+  </div>
+  <div class="mobile-only">
+    <section class="guestezee-hero-section">
+      <div class="guestezee-hero-container">
+        <h1 class="guestezee-scroll-animate guestezee-fade-in-up" data-delay="0">
+          GuestEzee &ndash; The World's First Guest Management System
+        </h1>
+        <p class="guestezee-hero-subtitle guestezee-scroll-animate guestezee-fade-in-up" data-delay="200">
+          Seamless. Smart. Sustainable. A Win-Win for Hotels &amp; Guests.
+        </p>
+        <p class="guestezee-hero-contact guestezee-scroll-animate guestezee-fade-in-up" data-delay="400">
+          Want to know more about GuestEzee? Send your queries to
+          <a href="mailto:support@guestezee.com" class="guestezee-email-link">support@guestezee.com</a>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Vision Section -->
+  <section class="guestezee-vision-section">
+    <div class="guestezee-section-container">
+      <h2 class="guestezee-section-title guestezee-scroll-animate guestezee-fade-in-left">Our Vision</h2>
+      <div class="guestezee-vision-content guestezee-scroll-animate guestezee-fade-in-right" data-delay="200">
+        <p class="guestezee-vision-text">
+          We imagined a world where hospitality is not only luxurious but also intelligent, intuitive, and
+          deeply guest-centric. This vision brought to life <strong>GuestEzee</strong> &mdash; the
+          <strong>world's first real-time Guest Management System</strong>, designed to elevate guest
+          experiences while streamlining hotel operations.
+        </p>
+        <p class="guestezee-vision-tagline">
+          Because great hospitality should feel effortless &mdash; for both guests and hoteliers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why We Exist Section -->
+  <section class="guestezee-purpose-section">
+    <div class="guestezee-section-container">
+      <h2 class="guestezee-section-title guestezee-scroll-animate guestezee-fade-in-up">Why We Exist</h2>
+      <div class="guestezee-purpose-cards">
+        <div class="guestezee-purpose-card guestezee-scroll-animate guestezee-slide-in-up" data-delay="0">
+          <div class="guestezee-card-icon">&#128161;</div>
+          <h3 class="guestezee-card-title">Built for Hotels &amp; Guests</h3>
+          <p class="guestezee-card-description">
+            Most hotel systems are built for the hotel. <strong>GuestEzee is built for both.</strong> We
+            believe in creating a <strong>win-win</strong>: delighting guests while simplifying work for
+            staff and management.
+          </p>
+        </div>
+
+        <div class="guestezee-purpose-card guestezee-scroll-animate guestezee-slide-in-up" data-delay="100">
+          <div class="guestezee-card-icon">&#128260;</div>
+          <h3 class="guestezee-card-title">Flipping the Experience</h3>
+          <p class="guestezee-card-description">
+            We address the everyday challenges hotels face and <strong>flip the experience</strong> &mdash;
+            turning every challenge into an opportunity for better service, happier guests, and higher
+            revenues.
+          </p>
+        </div>
+
+        <div class="guestezee-purpose-card guestezee-scroll-animate guestezee-slide-in-up" data-delay="200">
+          <div class="guestezee-card-icon">&#127919;</div>
+          <h3 class="guestezee-card-title">Addressing Real Challenges</h3>
+          <p class="guestezee-card-description">
+            Low guest engagement, missed revenue opportunities, operational delays, negative online
+            reviews, manual check-ins with plastic key cards, and sustainability concerns.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Do Section -->
+  <section class="guestezee-services-section">
+    <div class="guestezee-section-container">
+      <h2 class="guestezee-section-title guestezee-scroll-animate guestezee-fade-in-up">What We Do</h2>
+      <p class="guestezee-services-intro guestezee-scroll-animate guestezee-fade-in-up" data-delay="200">
+        GuestEzee is a <strong>B2B2C Guest Management System</strong> that unifies your entire hospitality
+        ecosystem &mdash; from front desk to feedback &mdash; into one intelligent, responsive platform. It makes life
+        easier for hotels. But just as importantly, it makes stays more delightful for guests.
+      </p>
+    </div>
+  </section>
+
+  <!-- Guest Benefits Section -->
+  <section class="guestezee-guest-benefits-section">
+    <div class="guestezee-section-container">
+      <h2 class="guestezee-section-title guestezee-scroll-animate guestezee-fade-in-up">How It Benefits Guests</h2>
+      <div class="guestezee-benefits-grid">
+        <div class="guestezee-benefit-card guestezee-scroll-animate guestezee-scale-in" data-delay="0">
+          <div class="guestezee-benefit-icon">&#9193;</div>
+          <h3 class="guestezee-benefit-title">Skip the Queue with Contactless Check-In</h3>
+          <p class="guestezee-benefit-description">
+            Guests can bypass the front desk entirely by checking in through the app, receiving their
+            digital room key directly on their phone.
+          </p>
+        </div>
+
+        <div class="guestezee-benefit-card guestezee-scroll-animate guestezee-scale-in" data-delay="100">
+          <div class="guestezee-benefit-icon">&#128241;</div>
+          <h3 class="guestezee-benefit-title">Convenience at Their Fingertips</h3>
+          <p class="guestezee-benefit-description">
+            Book spa sessions, order room service, request housekeeping, extend stays &mdash; all from one
+            intuitive app.
+          </p>
+        </div>
+
+        <div class="guestezee-benefit-card guestezee-scroll-animate guestezee-scale-in" data-delay="200">
+          <div class="guestezee-benefit-icon">&#9889;</div>
+          <h3 class="guestezee-benefit-title">Faster, Better Service</h3>
+          <p class="guestezee-benefit-description">
+            Guest requests are routed instantly to the right staff, ensuring quicker response times and
+            enhanced satisfaction.
+          </p>
+        </div>
+
+        <div class="guestezee-benefit-card guestezee-scroll-animate guestezee-scale-in" data-delay="300">
+          <div class="guestezee-benefit-icon">&#128273;</div>
+          <h3 class="guestezee-benefit-title">Keyless Room Entry</h3>
+          <p class="guestezee-benefit-description">
+            Secure, mobile-based access with no plastic cards or delays.
+          </p>
+        </div>
+
+        <div class="guestezee-benefit-card guestezee-scroll-animate guestezee-scale-in" data-delay="400">
+          <div class="guestezee-benefit-icon">&#128179;</div>
+          <h3 class="guestezee-benefit-title">Easy Checkout &amp; Digital Payments</h3>
+          <p class="guestezee-benefit-description">
+            View your final bill and make secure payments directly from the app.
+          </p>
+        </div>
+
+        <div class="guestezee-benefit-card guestezee-scroll-animate guestezee-scale-in" data-delay="500">
+          <div class="guestezee-benefit-icon">&#11088;</div>
+          <h3 class="guestezee-benefit-title">Effortless Reviews</h3>
+          <p class="guestezee-benefit-description">
+            GuestEzee's AI auto-generates review prompts post-stay, making it easy for happy guests to
+            share their feedback &mdash; and boosting the hotel's reputation.
+          </p>
+        </div>
+      </div>
+      <p class="guestezee-benefits-conclusion guestezee-scroll-animate guestezee-fade-in-up" data-delay="600">
+        GuestEzee ensures guests feel <strong>empowered, prioritized, and valued</strong> &mdash; from arrival to departure.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ecosystem Section -->
+  <section class="guestezee-ecosystem-section">
+    <div class="guestezee-section-container">
+      <h2 class="guestezee-section-title guestezee-scroll-animate guestezee-fade-in-up">The GuestEzee Ecosystem</h2>
+      <div class="guestezee-ecosystem-image guestezee-scroll-animate guestezee-scale-in" data-delay="200">
+        <img src="assets/images/ecosystem.jpg" alt="GuestEzee Ecosystem" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Carousel Section -->
+  <section class="guestezee-features-section">
+    <div class="guestezee-section-container">
+      <h2 class="guestezee-section-title guestezee-scroll-animate guestezee-fade-in-up">What Makes Us Different</h2>
+
+      <div class="guestezee-features-carousel guestezee-scroll-animate guestezee-fade-in-up" data-delay="200">
+        <div class="guestezee-carousel-controls">
+          <button class="guestezee-carousel-btn guestezee-carousel-prev" id="carouselPrevBtn" onclick="prevSlide()">
+            <i class="fa fa-chevron-left"></i>
+          </button>
+
+          <div class="guestezee-carousel-wrapper">
+            <div class="guestezee-carousel-track" id="carouselTrack">
+              <div class="guestezee-feature-card">
+                <div class="guestezee-feature-content">
+                  <div class="guestezee-feature-icon">&#128202;</div>
+                  <h3 class="guestezee-feature-title">Live Guest Monitoring</h3>
+                  <p class="guestezee-feature-description">Track satisfaction in real-time and address issues proactively.</p>
+                </div>
+              </div>
+              <div class="guestezee-feature-card">
+                <div class="guestezee-feature-content">
+                  <div class="guestezee-feature-icon">&#128682;</div>
+                  <h3 class="guestezee-feature-title">Contactless Entry &amp; Check-In</h3>
+                  <p class="guestezee-feature-description">No queues. No keys. No delays. Just seamless access.</p>
+                </div>
+              </div>
+              <div class="guestezee-feature-card">
+                <div class="guestezee-feature-content">
+                  <div class="guestezee-feature-icon">&#11088;</div>
+                  <h3 class="guestezee-feature-title">Smart Review Automation</h3>
+                  <p class="guestezee-feature-description">Let your happiest guests boost your ratings, automatically.</p>
+                </div>
+              </div>
+              <div class="guestezee-feature-card">
+                <div class="guestezee-feature-content">
+                  <div class="guestezee-feature-icon">&#128200;</div>
+                  <h3 class="guestezee-feature-title">Upselling On Autopilot</h3>
+                  <p class="guestezee-feature-description">Personalized offers for dining, upgrades, and more, sent in real-time.</p>
+                </div>
+              </div>
+              <div class="guestezee-feature-card">
+                <div class="guestezee-feature-content">
+                  <div class="guestezee-feature-icon">&#129302;</div>
+                  <h3 class="guestezee-feature-title">AI &amp; Analytics</h3>
+                  <p class="guestezee-feature-description">Understand trends, forecast demand, and make smarter decisions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="guestezee-carousel-btn guestezee-carousel-next" id="carouselNextBtn" onclick="nextSlide()">
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Win-Win Benefits Section -->
+  <section class="guestezee-benefits-section guestezee-scroll-animate" id="benefitsSection">
+    <div class="guestezee-section-container">
+      <h2 class="guestezee-benefits-title">Why GuestEzee Is a Win-Win</h2>
+
+      <div class="guestezee-benefits-columns">
+        <div class="guestezee-benefits-column">
+          <h3 class="guestezee-benefits-heading">
+            <span class="guestezee-check-icon">&#9989;</span> For Hotels:
+          </h3>
+          <ul class="guestezee-benefits-list" id="hotelBenefitsList">
+            <li class="guestezee-benefit-item"><span class="guestezee-bullet">&bull;</span> Boost ARR and guest loyalty</li>
+            <li class="guestezee-benefit-item"><span class="guestezee-bullet">&bull;</span> Automate operations and service delivery</li>
+            <li class="guestezee-benefit-item"><span class="guestezee-bullet">&bull;</span> Improve online reputation with authentic reviews</li>
+            <li class="guestezee-benefit-item"><span class="guestezee-bullet">&bull;</span> Reduce plastic usage with sustainable technology</li>
+          </ul>
+        </div>
+
+        <div class="guestezee-benefits-column">
+          <h3 class="guestezee-benefits-heading">
+            <span class="guestezee-check-icon">&#9989;</span> For Guests:
+          </h3>
+          <ul class="guestezee-benefits-list" id="guestBenefitsList">
+            <li class="guestezee-benefit-item"><span class="guestezee-bullet">&bull;</span> Skip queues with digital check-in and keyless entry</li>
+            <li class="guestezee-benefit-item"><span class="guestezee-bullet">&bull;</span> Control their stay from the comfort of their phone</li>
+            <li class="guestezee-benefit-item"><span class="guestezee-bullet">&bull;</span> Enjoy faster service and smoother experiences</li>
+            <li class="guestezee-benefit-item"><span class="guestezee-bullet">&bull;</span> Feel heard, valued, and effortlessly cared for</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="guestezee-cta-section">
+    <div class="guestezee-section-container">
+      <div class="guestezee-cta-content guestezee-scroll-animate guestezee-fade-in-up">
+        <h2 class="guestezee-cta-title">We're Not Just Keeping Up With the Future &mdash; We're Defining It</h2>
+        <p class="guestezee-cta-description">
+          GuestEzee isn't just software. It's a hospitality revolution &mdash; delivering unforgettable guest
+          journeys and operational excellence in one unified platform.
+        </p>
+        <p class="guestezee-cta-contact">
+          Want to know more about GuestEzee? Send your queries to
+          <a href="mailto:support@guestezee.com" class="guestezee-email-link">support@guestezee.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-container">
+  <div class="footer-logo mobile-only">
+    <img src="assets/images/page_1 1.png" alt="Guestezee's Logo" />
+  </div>
+  <div class="footer-sections">
+    <div class="footer-logo desktop-only">
+      <img src="assets/images/page_1 1.png" alt="Guestezee's Logo" />
+    </div>
+    <div class="footer-column">
+      <h6 style="color: black;">CUSTOMER CARE</h6>
+      <ul>
+        <li><a href="about-us.html" style="color: black !important;">About</a></li>
+        <li><a onclick="openEnquiryModal()" style="color: black !important; cursor:pointer;">Contact Us</a></li>
+        <li><a href="terms-conditions.html" style="color: black !important;">Terms and Conditions</a></li>
+        <li><a href="privacy-policy.html" style="color: black !important;">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h6 style="color: black;">GET IN TOUCH</h6>
+      <p style="color: black;">Call : +91 90030 44445</p>
+      <p style="color: black;">Email : support@guestezee.com</p>
+    </div>
+    <div class="footer-column social-media">
+      <h6 style="color: black;">SOCIAL MEDIA</h6>
+      <div class="icons">
+        <a href="https://www.linkedin.com/company/guestezee/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/new_social/linkedin (1).png" alt="linkedin" />
+        </a>
+        <a href="https://x.com/guestezee?s=21" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/new_social/twitter (1).png" alt="Twitter" />
+        </a>
+        <a href="https://www.instagram.com/guestezee/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/new_social/social.png" alt="instagram" />
+        </a>
+        <a href="https://youtube.com/@guestezee?si=RiFpEavhaRThUb37" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/new_social/youtube.png" alt="youtube" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="guest-ezee-footer">
+  Copyright Division of GuestVento Technology Pvt Ltd.
+</div>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="top-button" onclick="topFunction()" id="myBtn" title="Go to top" style="display:none;"><i class="fa fa-angle-up"></i></button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script src="assets/js/common.js"></script>
+<script>
+  // ===== Scroll progress bar =====
+  var progressBar = document.querySelector('.guestezee-scroll-progress');
+  window.addEventListener('scroll', function () {
+    var scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = Math.min(scrolled, 100) + '%';
+  });
+
+  // ===== Scroll-triggered animations =====
+  var animatedElements = new WeakSet();
+
+  function animateBenefitsList() {
+    var hotelItems = document.querySelectorAll('#hotelBenefitsList .guestezee-benefit-item');
+    hotelItems.forEach(function (item, index) {
+      setTimeout(function () { item.classList.add('guestezee-benefit-animated'); }, index * 100);
+    });
+    var guestItems = document.querySelectorAll('#guestBenefitsList .guestezee-benefit-item');
+    guestItems.forEach(function (item, index) {
+      setTimeout(function () { item.classList.add('guestezee-benefit-animated'); }, index * 100 + 200);
+    });
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting && !animatedElements.has(entry.target)) {
+        animatedElements.add(entry.target);
+        var delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+        setTimeout(function () {
+          entry.target.classList.add('guestezee-animate-active');
+          if (entry.target.id === 'benefitsSection') {
+            animateBenefitsList();
+          }
+        }, delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.guestezee-scroll-animate').forEach(function (el) {
+    observer.observe(el);
+  });
+
+  // ===== Features carousel =====
+  var currentIndex = 0;
+  var cardsPerView = 1;
+  var featureCount = document.querySelectorAll('.guestezee-feature-card').length;
+  var infiniteScroll = true;
+  var autoplayInterval = null;
+
+  function setCardsPerView() {
+    var width = window.innerWidth;
+    if (width >= 1024) cardsPerView = 3;
+    else if (width >= 768) cardsPerView = 2;
+    else cardsPerView = 1;
+  }
+
+  function updateCarousel() {
+    var track = document.getElementById('carouselTrack');
+    var offset = currentIndex * (100 / cardsPerView);
+    track.style.transform = 'translateX(-' + offset + '%)';
+
+    var prevBtn = document.getElementById('carouselPrevBtn');
+    var nextBtn = document.getElementById('carouselNextBtn');
+    var maxIndex = featureCount - cardsPerView;
+    if (!infiniteScroll && currentIndex === 0) prevBtn.classList.add('disabled');
+    else prevBtn.classList.remove('disabled');
+    if (!infiniteScroll && currentIndex >= maxIndex) nextBtn.classList.add('disabled');
+    else nextBtn.classList.remove('disabled');
+  }
+
+  function nextSlide() {
+    var maxIndex = featureCount - cardsPerView;
+    if (currentIndex < maxIndex) currentIndex++;
+    else if (infiniteScroll) currentIndex = 0;
+    updateCarousel();
+    resetAutoplay();
+  }
+
+  function prevSlide() {
+    var maxIndex = featureCount - cardsPerView;
+    if (currentIndex > 0) currentIndex--;
+    else if (infiniteScroll) currentIndex = maxIndex;
+    updateCarousel();
+    resetAutoplay();
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayInterval = setInterval(function () {
+      var maxIndex = featureCount - cardsPerView;
+      if (currentIndex < maxIndex) currentIndex++;
+      else if (infiniteScroll) currentIndex = 0;
+      updateCarousel();
+    }, 4000);
+  }
+
+  function stopAutoplay() {
+    if (autoplayInterval) clearInterval(autoplayInterval);
+  }
+
+  function resetAutoplay() {
+    stopAutoplay();
+    startAutoplay();
+  }
+
+  window.addEventListener('resize', function () {
+    setCardsPerView();
+    var maxIndex = featureCount - cardsPerView;
+    if (currentIndex > maxIndex) currentIndex = maxIndex;
+    updateCarousel();
+  });
+
+  // Touch swipe support
+  var touchStartX = 0, touchEndX = 0;
+  var carouselWrapper = document.querySelector('.guestezee-carousel-wrapper');
+  carouselWrapper.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    stopAutoplay();
+  });
+  carouselWrapper.addEventListener('touchend', function (e) {
+    touchEndX = e.changedTouches[0].clientX;
+    var swipeDistance = touchEndX - touchStartX;
+    if (swipeDistance > 50) prevSlide();
+    else if (swipeDistance < -50) nextSlide();
+    startAutoplay();
+  });
+
+  setCardsPerView();
+  updateCarousel();
+  startAutoplay();
+</script>
+</body>
+</html>
